@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+- Always use `npm` as the package manager for all scripts, installs, and related tasks.
