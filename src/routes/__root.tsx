@@ -8,7 +8,7 @@ import {
 } from '@tanstack/react-router'
 import { QueryClient } from '@tanstack/react-query';
 import { Layout } from "@/components/layout";
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import appCss from "@/styles/app.css?url"
 
@@ -56,8 +56,8 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       </head>
       <body>
         {children}
-        <SpeedInsights />
         <Scripts />
+        <SpeedInsights />
       </body>
     </html>
   )
