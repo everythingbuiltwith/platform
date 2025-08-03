@@ -1,0 +1,75 @@
+{
+  "../../../../~start/default-client-entry.tsx": {
+    "file": "assets/main-CdMbZilf.js",
+    "name": "main",
+    "src": "../../../../~start/default-client-entry.tsx",
+    "isEntry": true,
+    "dynamicImports": [
+      "src/routes/submit.tsx?tsr-split=component",
+      "src/routes/index.tsx?tsr-split=component",
+      "src/routes/stacks/$companyName.tsx?tsr-split=component"
+    ],
+    "assets": [
+      "assets/app-62HworsZ.css"
+    ]
+  },
+  "/Users/maxwagner/private-workspace/everythingbuiltwith/src/styles/app.css": {
+    "file": "assets/app-62HworsZ.css",
+    "src": "/Users/maxwagner/private-workspace/everythingbuiltwith/src/styles/app.css"
+  },
+  "_badge-D-iAwQpQ.js": {
+    "file": "assets/badge-D-iAwQpQ.js",
+    "name": "badge",
+    "imports": [
+      "../../../../~start/default-client-entry.tsx"
+    ]
+  },
+  "_card-C_q2tNO1.js": {
+    "file": "assets/card-C_q2tNO1.js",
+    "name": "card",
+    "imports": [
+      "../../../../~start/default-client-entry.tsx"
+    ]
+  },
+  "_index-CZZKTkWs.js": {
+    "file": "assets/index-CZZKTkWs.js",
+    "name": "index",
+    "imports": [
+      "../../../../~start/default-client-entry.tsx"
+    ]
+  },
+  "src/routes/index.tsx?tsr-split=component": {
+    "file": "assets/index-DG2wbATq.js",
+    "name": "index",
+    "src": "src/routes/index.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "../../../../~start/default-client-entry.tsx",
+      "_card-C_q2tNO1.js",
+      "_badge-D-iAwQpQ.js",
+      "_index-CZZKTkWs.js"
+    ]
+  },
+  "src/routes/stacks/$companyName.tsx?tsr-split=component": {
+    "file": "assets/_companyName-_0GmiSO8.js",
+    "name": "_companyName",
+    "src": "src/routes/stacks/$companyName.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "../../../../~start/default-client-entry.tsx",
+      "_badge-D-iAwQpQ.js",
+      "_card-C_q2tNO1.js"
+    ]
+  },
+  "src/routes/submit.tsx?tsr-split=component": {
+    "file": "assets/submit-XY64NAOe.js",
+    "name": "submit",
+    "src": "src/routes/submit.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "../../../../~start/default-client-entry.tsx",
+      "_card-C_q2tNO1.js",
+      "_index-CZZKTkWs.js"
+    ]
+  }
+}

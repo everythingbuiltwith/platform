@@ -46,6 +46,26 @@ Design of the website for iteration 1:
 
 The following iterations are not clear yet and depend on the success of iteration 1 and if we can attract many people to actually use the site.
 
+Tech stack:
+Each tech stack should hold compareable information. It does not bring value to just blindly list them. I would start with come categories to group them, so it's also easy to compare them and show updates down the line.
+Categories for the start will be:
+- Frontend
+- Backend
+- Database
+- Authentication
+- Hosting / Infrastruture
+- Dev Tools / CI/CD
+- Monitoring / logs
+- Other Key tools
+
+Why categories:
+Each tech stack was choosen because of a specific reason. To make it easy for the ones submitting the tech stack and easy for us to compare the tech stacks, every added tech stack selection in their categories should have those "why" categories:
+- Performance & Architecture
+- Developer Experience
+- Business & Product Needs
+- Ecosystem & Integration
+- Long-Term Strategy
+
 Important things:
 - YOU MUST always search for the latest documenation of whatever tool you want to use
 - If unclear, YOU MUST ask me for feedback

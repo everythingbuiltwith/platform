@@ -7,6 +7,9 @@ import {
   createRootRouteWithContext,
 } from '@tanstack/react-router'
 import { QueryClient } from '@tanstack/react-query';
+import { Layout } from "@/components/layout";
+
+import appCss from "@/styles/app.css?url"
 
 export const Route = createRootRouteWithContext<{
     queryClient: QueryClient;
@@ -24,6 +27,12 @@ export const Route = createRootRouteWithContext<{
         title: 'TanStack Start Starterxx',
       },
     ],
+    links: [
+      {
+        rel: "stylesheet",
+        href: appCss,
+      },
+    ],
   }),
   component: RootComponent,
 })
@@ -31,14 +40,16 @@ export const Route = createRootRouteWithContext<{
 function RootComponent() {
   return (
     <RootDocument>
-      <Outlet />
+      <Layout>
+        <Outlet />
+      </Layout>
     </RootDocument>
   )
 }
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html>
+    <html className="dark">
       <head>
         <HeadContent />
       </head>

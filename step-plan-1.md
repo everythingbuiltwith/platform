@@ -1,19 +1,18 @@
 # Step-by-Step Plan for Iteration 1: everythingbuiltwith.com
 
 ## 1. Project Setup & Initial Configuration
-- [ ] Ensure TanStack Start is initialized and running locally
-- [ ] Set up version control (if not already)
-- [ ] Configure TypeScript, Prettier, and ESLint for code quality
-- [ ] Install and configure Tailwind CSS v4
-- [ ] Install and set up Shadcn UI components
+- [x] Ensure TanStack Start is initialized and running locally
+- [x] Set up version control (if not already)
+- [x] Install and configure Tailwind CSS v4
+- [x] Install and set up Shadcn UI components
 
 ## 2. Design System & Theming
-- [ ] Set up global dark mode (default and only mode for now)
-- [ ] Choose and apply Inter font as the main font
-- [ ] Define and apply a main red color theme using Tailwind v4
-- [ ] Use Shadcn UI components for modern, accessible UI
-- [ ] Create basic layout components (Header, Footer, Container)
-- [ ] Add placeholder logo and favicon
+- [x] Set up global dark mode (default and only mode for now)
+- [x] Choose and apply Inter font as the main font
+- [x] Define and apply a main red color theme using Tailwind v4
+- [x] Use Shadcn UI components for modern, accessible UI
+- [x] Create basic layout components (Header, Footer, Container)
+- [x] Add placeholder logo and favicon
 
 ## 3. Routing & Page Structure
 - [ ] Define main routes: Home, Tech Stacks, Submit Tech Stack, Imprint, Privacy, Contact
