@@ -11,7 +11,7 @@
     "dev": "npx convex dev --once && concurrently -r npm:dev:web npm:dev:convex",
     "dev:web": "vite dev",
     "dev:convex": "npx convex dev",
-    "build": "vite build && tsc --noEmit",
+    "build": "npx convex codegen && vite build && tsc --noEmit",
     "seed": "npx convex run seed:seedDatabase"
   },
   "dependencies": {
