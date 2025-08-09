@@ -60,7 +60,7 @@ export const techIcons = {
   'github': { name: "GitHub", icon: <Icon icon="logos:github-icon" /> },
   'discord': { name: "Discord", icon: <Icon icon="logos:discord" /> },
   'twitter': { name: "Twitter", icon: <Icon icon="logos:twitter" /> },
-  'x': { name: "X", icon: <Icon icon="logos:twitter" /> },
+  'x': { name: "X", icon: <Icon icon="simple-icons:x" /> },
 } as const;
 
 // Helper function to get tech icon by name

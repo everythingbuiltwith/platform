@@ -11,7 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SubmitRouteImport } from './routes/submit'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as StacksCompanyNameRouteImport } from './routes/stacks/$companyName'
+import { Route as StacksCompanySlugRouteImport } from './routes/stacks/$companySlug'
 
 const SubmitRoute = SubmitRouteImport.update({
   id: '/submit',
@@ -23,40 +23,40 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const StacksCompanyNameRoute = StacksCompanyNameRouteImport.update({
-  id: '/stacks/$companyName',
-  path: '/stacks/$companyName',
+const StacksCompanySlugRoute = StacksCompanySlugRouteImport.update({
+  id: '/stacks/$companySlug',
+  path: '/stacks/$companySlug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/submit': typeof SubmitRoute
-  '/stacks/$companyName': typeof StacksCompanyNameRoute
+  '/stacks/$companySlug': typeof StacksCompanySlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/submit': typeof SubmitRoute
-  '/stacks/$companyName': typeof StacksCompanyNameRoute
+  '/stacks/$companySlug': typeof StacksCompanySlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/submit': typeof SubmitRoute
-  '/stacks/$companyName': typeof StacksCompanyNameRoute
+  '/stacks/$companySlug': typeof StacksCompanySlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/submit' | '/stacks/$companyName'
+  fullPaths: '/' | '/submit' | '/stacks/$companySlug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/submit' | '/stacks/$companyName'
-  id: '__root__' | '/' | '/submit' | '/stacks/$companyName'
+  to: '/' | '/submit' | '/stacks/$companySlug'
+  id: '__root__' | '/' | '/submit' | '/stacks/$companySlug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SubmitRoute: typeof SubmitRoute
-  StacksCompanyNameRoute: typeof StacksCompanyNameRoute
+  StacksCompanySlugRoute: typeof StacksCompanySlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +75,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/stacks/$companyName': {
-      id: '/stacks/$companyName'
-      path: '/stacks/$companyName'
-      fullPath: '/stacks/$companyName'
-      preLoaderRoute: typeof StacksCompanyNameRouteImport
+    '/stacks/$companySlug': {
+      id: '/stacks/$companySlug'
+      path: '/stacks/$companySlug'
+      fullPath: '/stacks/$companySlug'
+      preLoaderRoute: typeof StacksCompanySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SubmitRoute: SubmitRoute,
-  StacksCompanyNameRoute: StacksCompanyNameRoute,
+  StacksCompanySlugRoute: StacksCompanySlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
