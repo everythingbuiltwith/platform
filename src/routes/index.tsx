@@ -5,15 +5,9 @@ import {
 } from "lucide-react";
 import { TechStackCard } from "@/components/TechStackCard";
 import { getIconifyComponent } from "@/lib/icons";
-
-const technologies = {
-  nextjs: { name: "Next.js", icon: getIconifyComponent("Next.js") },
-  react: { name: "React", icon: getIconifyComponent("React") },
-  postgresql: { name: "PostgreSQL", icon: getIconifyComponent("PostgreSQL") },
-  go: { name: "Go", icon: getIconifyComponent("Go") },
-  figma: { name: "Figma", icon: getIconifyComponent("Figma") },
-  kafka: { name: "Kafka", icon: getIconifyComponent("Kafka") },
-};
+import { api } from "../../convex/_generated/api";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { convexQuery } from "@convex-dev/react-query";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -32,22 +26,13 @@ function Home() {
 }
 
 function HeroSection() {
-  const techStacks = [
-    {
-      name: "Vercel",
-      description: "The platform for frontend developers, providing the speed and reliability innovators need to create at the moment of inspiration.",
-      industry: "Cloud Infrastructure",
-      icon: "/logos/vercel_white.svg",
-      teaserIconKeys: ["nextjs", "react"],
-    },
-    {
-      name: "Linear",
-      description: "The issue tracking tool you'll enjoy using. Build high-quality software, fast.",
-      industry: "Developer Tools",
-      icon: "/logos/linear_white.svg",
-      teaserIconKeys: ["postgresql", "go"],
-    },
-  ];
+  // Hardcoded company slugs for hero section
+  const heroSlugs = ["vercel", "linear"];
+
+  // Query hero companies by slugs using TanStack Query integration
+  const { data: heroCompanies } = useSuspenseQuery(
+    convexQuery(api.queries.getCompaniesBySlugs, { slugs: heroSlugs })
+  );
 
   const floatingTechIcons = [
     { icon: getIconifyComponent("Go", "size-10"), position: "top-[5%] right-[10%]" },
@@ -78,37 +63,42 @@ function HeroSection() {
             For developers, founders, and teams making smarter decisions. 
           </p>
           <div className="flex gap-4 mt-6">
-            <Button asChild size="lg" className="gap-2">
-              {/* TODO: Update this to a stacks list route when available */}
-              <Link to="/stacks/$companyName" params={{ companyName: 'vercel' }}>
-                Explore Stacks <ArrowRight className="size-4" />
-              </Link>
+            <Button asChild size="lg" className="gap-2" variant="outline">
+              <span>Explore Stacks soon!</span>
             </Button>
           </div>
         </div>
         <div className="relative h-[740px]">
-          <div className="absolute top-0 left-0 w-[320px]">
-            <TechStackCard
-              name={techStacks[0].name}
-              description={techStacks[0].description}
-              industry={techStacks[0].industry}
-              icon={techStacks[0].icon}
-              teaserIcons={techStacks[0].teaserIconKeys.map(
-                (key) => technologies[key]
-              )}
-            />
-          </div>
-          <div className="absolute bottom-0 right-0 w-[320px]">
-            <TechStackCard
-              name={techStacks[1].name}
-              description={techStacks[1].description}
-              industry={techStacks[1].industry}
-              icon={techStacks[1].icon}
-              teaserIcons={techStacks[1].teaserIconKeys.map(
-                (key) => technologies[key]
-              )}
-            />
-          </div>
+          <div>
+              <div className="absolute top-0 left-0 w-[320px]">
+                <TechStackCard
+                  isLoading={!heroCompanies || heroCompanies.length === 0}
+                  name={heroCompanies?.[0]?.name || ""}
+                  description={heroCompanies?.[0]?.description || ""}
+                  industry={heroCompanies?.[0]?.industry?.name || ""}
+                  icon={`/logos/${heroCompanies?.[0]?.logo || ""}`}
+                  slug={heroCompanies?.[0]?.slug || ""}
+                  teaserIcons={heroCompanies?.[0]?.teaserTechnologies?.map((tech) => ({
+                    name: tech.name,
+                    icon: getIconifyComponent(tech.iconName),
+                  })) || []}
+                />
+              </div>
+              <div className="absolute bottom-0 right-0 w-[320px]">
+                <TechStackCard
+                  isLoading={!heroCompanies || heroCompanies.length < 2}
+                  name={heroCompanies?.[1]?.name || ""}
+                  description={heroCompanies?.[1]?.description || ""}
+                  industry={heroCompanies?.[1]?.industry?.name || ""}
+                  icon={`/logos/${heroCompanies?.[1]?.logo || ""}`}
+                  slug={heroCompanies?.[1]?.slug || ""}
+                  teaserIcons={heroCompanies?.[1]?.teaserTechnologies?.map((tech) => ({
+                    name: tech.name,
+                    icon: getIconifyComponent(tech.iconName),
+                  })) || []}
+                />
+              </div>
+            </div>
           {floatingTechIcons.map((item, index) => (
             <div
               key={index}
@@ -219,36 +209,24 @@ function ValueProposition() {
 }
 
 function FeaturedStacks() {
-  const stacks = [
-    {
-      name: "Vercel",
-      description: "The platform for frontend developers, providing the speed and reliability innovators need to create at the moment of inspiration.",
-      industry: "Cloud Infrastructure",
-      icon: "/logos/vercel_white.svg",
-      teaserIconKeys: ["nextjs", "react"],
-    },
-    {
-      name: "Linear",
-      description: "The issue tracking tool you'll enjoy using. Build high-quality software, fast.",
-      industry: "Developer Tools",
-      icon: "/logos/linear_white.svg",
-      teaserIconKeys: ["postgresql", "figma"],
-    },
-    {
-      name: "Stripe",
-      description: "Financial infrastructure for the internet. Millions of companies of all sizes use Stripe online and in person to accept payments.",
-      industry: "Fintech",
-      icon: "/logos/stripe_white.svg",
-      teaserIconKeys: ["go", "kafka"],
-    },
-    {
-      name: "Supabase",
-      description: "The open source Firebase alternative. Build in a weekend, scale to millions.",
-      industry: "Developer Platform",
-      icon: "/logos/supabase_white.svg",
-      teaserIconKeys: ["postgresql", "go"],
-    },
-  ];
+  // Use TanStack Query + convexQuery helper to get featured companies
+  const { data: featuredCompanies } = useSuspenseQuery(
+    convexQuery(api.queries.getFeaturedCompanies, {})
+  );
+
+  if (!featuredCompanies) {
+    return (
+      <section className="flex flex-col gap-8 items-center text-center">
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+          Trusted by developers worldwide
+        </h2>
+        <p className="max-w-xl text-muted-foreground">
+          Loading featured tech stacks...
+        </p>
+      </section>
+    );
+  }
+
   return (
     <section className="flex flex-col gap-8 items-center text-center">
       <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
@@ -258,15 +236,19 @@ function FeaturedStacks() {
         From high-growth startups to established enterprises, here are a few of
         the stacks we've analyzed.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-4 w-full">
-        {stacks.map((stack) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-4 w-full">
+        {featuredCompanies.map((company) => (
           <TechStackCard
-            key={stack.name}
-            name={stack.name}
-            description={stack.description}
-            industry={stack.industry}
-            icon={stack.icon}
-            teaserIcons={stack.teaserIconKeys.map((key) => technologies[key])}
+            key={company._id}
+            name={company.name}
+            description={company.description}
+            industry={company.industry.name}
+            icon={`/logos/${company.logo}`}
+            slug={company.slug}
+            teaserIcons={company.teaserTechnologies?.map((tech) => ({
+              name: tech.name,
+              icon: getIconifyComponent(tech.iconName),
+            })) || []}
           />
         ))}
       </div>
