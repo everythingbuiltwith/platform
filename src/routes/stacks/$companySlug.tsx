@@ -8,6 +8,8 @@ import { ChevronRightIcon, CircleQuestionMark } from 'lucide-react';
 import { useQuery } from "@tanstack/react-query";
 import { convexQuery } from "@convex-dev/react-query";
 import { api } from "../../../convex/_generated/api";
+import { staticTitle } from '../__root';
+import { useEffect } from 'react';
 
 export const Route = createFileRoute('/stacks/$companySlug')({
   loader: async ({ context: { queryClient }, params: { companySlug } }) => {
@@ -53,6 +55,7 @@ function StackDetails() {
   }
 
   if (pageData.company === null) {
+    document.title = `Company Not Found${staticTitle}`;
     return (
       <div className="max-w-7xl mx-auto py-12 px-4 flex flex-col gap-8">
         <div className="text-center">
@@ -62,6 +65,10 @@ function StackDetails() {
       </div>
     );
   }
+  
+  useEffect(() => {
+    document.title = `${pageData.company.name} Company Stack${staticTitle}`;
+  }, [companySlug]);
 
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 flex flex-col gap-8">

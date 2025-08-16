@@ -1,15 +1,20 @@
 import { Button } from "@/components/ui/button";
-import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  ArrowRight,
-} from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
 import { TechStackCard } from "@/components/TechStackCard";
 import { getIconifyComponent } from "@/lib/icons";
 import { api } from "../../convex/_generated/api";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { convexQuery } from "@convex-dev/react-query";
+import { staticTitle } from "./__root";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      {
+        title: `Home${staticTitle}`
+      },
+    ],
+  }),
   component: Home,
 });
 

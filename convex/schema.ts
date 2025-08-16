@@ -2,6 +2,11 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
+    //user table for better auth
+    users: defineTable({
+        // Fields are optional
+    }),
+
     // indusstries like Finance, Cloud Infrastructure, etc.
     industries: defineTable({
         name: v.string(),
