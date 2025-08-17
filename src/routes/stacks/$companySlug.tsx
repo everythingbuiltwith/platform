@@ -8,6 +8,8 @@ import { ChevronRightIcon, CircleQuestionMark } from 'lucide-react';
 import { useQuery } from "@tanstack/react-query";
 import { convexQuery } from "@convex-dev/react-query";
 import { api } from "../../../convex/_generated/api";
+import { staticTitle } from '../__root';
+import { useEffect } from 'react';
 
 export const Route = createFileRoute('/stacks/$companySlug')({
   loader: async ({ context: { queryClient }, params: { companySlug } }) => {
@@ -29,6 +31,19 @@ function StackDetails() {
   function isLongContext(context?: string) {
     return context && context.length > 80;
   }
+
+  useEffect(() => {
+    const title =
+      isPending || !pageData
+        ? `Loading...${staticTitle}`
+        : isError
+        ? `Error loading company${staticTitle}`
+        : pageData.company === null
+        ? `Company Not Found${staticTitle}`
+        : `${pageData.company.name} Company Stack${staticTitle}`;
+    document.title = title;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [companySlug, isPending, isError, pageData]);
 
   if (isPending || !pageData) {
     return (

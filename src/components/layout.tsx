@@ -4,6 +4,9 @@ import { Layers2 } from "lucide-react";
 import { getIconifyComponent } from "@/lib/icons";
 import { Link } from "@tanstack/react-router";
 import { Button } from "./ui/button";
+import { Authenticated, Unauthenticated, AuthLoading, useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
+import { authClient } from "@/lib/auth-client";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
@@ -42,10 +45,40 @@ function Header() {
           <Button asChild variant="ghost">
             <Link to="/submit">Submit Stack</Link>
           </Button>
+          <AuthLoading>
+            <div className="w-8 h-8 rounded-full bg-muted animate-pulse" />
+          </AuthLoading>
+          <Unauthenticated>
+            <Button asChild variant="outline">
+              <Link to="/signin">Sign In</Link>
+            </Button>
+          </Unauthenticated>
+          <Authenticated>
+            <UserMenu />
+          </Authenticated>
           <Menubar className="bg-transparent border-none" />
         </div>
       </div>
     </header>
+  );
+}
+
+function UserMenu() {
+  const user = useQuery(api.auth.getCurrentUser);
+  
+  return (
+    <div className="flex items-center gap-2">
+      <span className="text-sm text-muted-foreground">
+        {user?.name || user?.email}
+      </span>
+      <Button 
+        variant="secondary"
+        size="sm"
+        onClick={() => authClient.signOut()}
+      >
+        Sign Out
+      </Button>
+    </div>
   );
 }
 
