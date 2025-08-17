@@ -54,7 +54,7 @@ import {
       // (skip this if you have no fields in your users table schema)
       const user = await ctx.db.get(userMetadata.userId as Id<"users">);
       return {
-        ...user,
+        ...(user ?? {}),
         ...userMetadata,
       };
     },
