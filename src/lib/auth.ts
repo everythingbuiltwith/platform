@@ -15,15 +15,23 @@ export const createAuth = (ctx: GenericCtx) =>
     database: convexAdapter(ctx, betterAuthComponent),
 
     socialProviders: {
-      google: { 
-          clientId: process.env.GOOGLE_CLIENT_ID as string, 
-          clientSecret: process.env.GOOGLE_CLIENT_SECRET as string, 
-      },
-      github: { 
-        clientId: process.env.GITHUB_CLIENT_ID as string, 
-        clientSecret: process.env.GITHUB_CLIENT_SECRET as string, 
-    }, 
-  },
+      ...(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
+        ? {
+            google: {
+              clientId: process.env.GOOGLE_CLIENT_ID!,
+              clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+            },
+          }
+        : {}),
+      ...(process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET
+        ? {
+            github: {
+              clientId: process.env.GITHUB_CLIENT_ID!,
+              clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+            },
+          }
+        : {}),
+    },
     plugins: [
       // The Convex plugin is required
       convex(),
