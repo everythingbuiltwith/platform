@@ -32,6 +32,19 @@ function StackDetails() {
     return context && context.length > 80;
   }
 
+  useEffect(() => {
+    const title =
+      isPending || !pageData
+        ? `Loading...${staticTitle}`
+        : isError
+        ? `Error loading company${staticTitle}`
+        : pageData.company === null
+        ? `Company Not Found${staticTitle}`
+        : `${pageData.company.name} Company Stack${staticTitle}`;
+    document.title = title;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [companySlug, isPending, isError, pageData]);
+
   if (isPending || !pageData) {
     return (
       <div className="max-w-7xl mx-auto py-12 px-4 flex flex-col gap-8">
@@ -65,10 +78,6 @@ function StackDetails() {
       </div>
     );
   }
-  
-  useEffect(() => {
-    document.title = `${pageData.company.name} Company Stack${staticTitle}`;
-  }, [companySlug]);
 
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 flex flex-col gap-8">
