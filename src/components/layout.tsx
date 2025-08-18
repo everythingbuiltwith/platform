@@ -83,50 +83,70 @@ function UserMenu() {
 }
 
 function Footer() {
+  const links = [
+    {
+        title: 'Privacy Policy',
+        href: '#',
+    },
+    {
+        title: 'Terms of Service',
+        href: '#',
+    },
+    {
+        title: 'Imprint',
+        href: '#',
+    },
+  ]
+
   return (
-    <footer className="w-full border-t border-border text-sm mt-8">
-      <div className="max-w-7xl mx-auto px-4 pt-8 pb-4 flex flex-col md:flex-row md:justify-between md:items-start items-center gap-8">
-        <div className="flex flex-col gap-3">
-          <div className="flex">
-            <Logo />
+      <footer className="py-6 md:py-8 border-t mt-16">
+          <div className="mx-auto max-w-5xl px-6">
+              <div className="flex justify-between">
+                <div className="flex flex-col items-start">
+                  <Link
+                    to="/"
+                    aria-label="go home"
+                    className="block">
+                    <Logo />
+                  </Link>
+                  <div className="my-8 flex flex-wrap gap-6 text-sm">
+                      <a
+                          href="https://github.com/everythingbuiltwith"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="GitHub"
+                          className="block">
+                          {getIconifyComponent("GitHub", "size-6")}
+                      </a>
+                      <a
+                          href="https://x.com/MaxWagnerDev"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="X/Twitter"
+                          className="block">
+                          {getIconifyComponent("x", "size-6")}
+                      </a>
+                  </div>
+                  <span className="text-muted-foreground block text-center text-sm"> © {new Date().getFullYear()} everythingbuiltwith.com, All rights reserved</span>
+                </div>
+              
+                <div className="flex flex-wrap gap-6 text-sm items-end">
+                    {links.map((link, index) => (
+                        <Link
+                            key={index}
+                            to={link.href}
+                            className="text-muted-foreground hover:text-primary block duration-150">
+                            <span>{link.title}</span>
+                        </Link>
+                    ))}
+                </div>
+              </div>
           </div>
-          <p className="text-sm max-w-xs text-muted-foreground">
-          Discover the tech behind successful products, with curated stories, real-world insights, and the reasons behind every choice. For developers, founders, and teams making smarter decisions.
-          </p>
-          <div className="flex items-center gap-4 mt-2 text-xl text-muted-foreground">
-            <a href="https://github.com/" aria-label="GitHub" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">{getIconifyComponent("GitHub")}</a>
-            <a href="https://discord.com/" aria-label="Discord" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">{getIconifyComponent("Discord")}</a>
-            <a href="https://x.com/" aria-label="X" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">{getIconifyComponent("X")}</a>
-          </div>
-        </div>
-        <div className="min-w-[160px]">
-          <div className="font-semibold text-foreground mb-2">Product</div>
-          <ul className="space-y-1">
-            <li><a href="#" className="hover:underline">Features</a></li>
-            <li><a href="#" className="hover:underline">Examples</a></li>
-            <li><a href="#" className="hover:underline">Roadmap</a></li>
-          </ul>
-        </div>
-        <div className="min-w-[160px]">
-          <div className="font-semibold text-foreground mb-2">Resources</div>
-          <ul className="space-y-1">
-            <li><a href="#" className="hover:underline">GitHub</a></li>
-            <li><a href="#" className="hover:underline">Discord</a></li>
-            <li><a href="#" className="hover:underline">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-      <div className="max-w-7xl mx-auto px-4 pb-4 pt-4 border-t border-border flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-muted-foreground">
-        <span>&copy; 2025 everybuiltwith.com - All rights reserved.</span>
-        <ul className="flex gap-4">
-          <li><a href="#" className="hover:underline">Privacy Policy</a></li>
-          <li><a href="#" className="hover:underline">Terms of use</a></li>
-          <li><a href="#" className="hover:underline">Imprint</a></li>
-        </ul>
-      </div>
-    </footer>
-  );
+      </footer>
+  )
 }
+
+
 
 function Logo() {
   return (

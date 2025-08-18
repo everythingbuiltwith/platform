@@ -57,10 +57,10 @@ export const techIcons = {
   'grpc': { name: "gRPC", icon: <Icon icon="logos:grpc" /> },
   
   // Social Media
-  'github': { name: "GitHub", icon: <Icon icon="logos:github-icon" /> },
+  'github': { name: "GitHub", icon: <Icon icon="fa6-brands:github" /> },
   'discord': { name: "Discord", icon: <Icon icon="logos:discord" /> },
   'twitter': { name: "Twitter", icon: <Icon icon="logos:twitter" /> },
-  'x': { name: "X", icon: <Icon icon="simple-icons:x" /> },
+  'x': { name: "X", icon: <Icon icon="fa6-brands:x-twitter" /> },
 } as const;
 
 // Helper function to get tech icon by name
