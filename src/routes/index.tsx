@@ -85,7 +85,7 @@ function HeroSection() {
                   slug={heroCompanies?.[0]?.slug || ""}
                   teaserIcons={heroCompanies?.[0]?.teaserTechnologies?.map((tech) => ({
                     name: tech.name,
-                    icon: getIconifyComponent(tech.iconName),
+                    icon: getIconifyComponent(tech.iconName, "size-6"),
                   })) || []}
                 />
               </div>
@@ -99,7 +99,7 @@ function HeroSection() {
                   slug={heroCompanies?.[1]?.slug || ""}
                   teaserIcons={heroCompanies?.[1]?.teaserTechnologies?.map((tech) => ({
                     name: tech.name,
-                    icon: getIconifyComponent(tech.iconName),
+                    icon: getIconifyComponent(tech.iconName, "size-6"),
                   })) || []}
                 />
               </div>
@@ -252,7 +252,7 @@ function FeaturedStacks() {
             slug={company.slug}
             teaserIcons={company.teaserTechnologies?.map((tech) => ({
               name: tech.name,
-              icon: getIconifyComponent(tech.iconName),
+              icon: getIconifyComponent(tech.iconName, "size-6"),
             })) || []}
           />
         ))}
