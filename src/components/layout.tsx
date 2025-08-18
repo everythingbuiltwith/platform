@@ -102,7 +102,7 @@ function Footer() {
       <footer className="py-6 md:py-8 border-t mt-16">
           <div className="mx-auto max-w-5xl px-6">
               <div className="flex justify-between">
-                <div className="flex flex-col items-start justify-baseline">
+                <div className="flex flex-col items-start">
                   <Link
                     to="/"
                     aria-label="go home"

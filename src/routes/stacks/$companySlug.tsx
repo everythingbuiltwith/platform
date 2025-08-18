@@ -4,7 +4,7 @@ import { Card, CardHeader, CardContent, CardFooter, CardTitle } from "@/componen
 import { getIconifyComponent } from "@/lib/icons";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetFooter, SheetClose } from "@/components/ui/sheet";
 import { Button } from '@/components/ui/button';
-import { ChevronRightIcon, CircleQuestionMark } from 'lucide-react';
+import { ChevronRightIcon, CircleHelp } from 'lucide-react';
 import { useQuery } from "@tanstack/react-query";
 import { convexQuery } from "@convex-dev/react-query";
 import { api } from "../../../convex/_generated/api";
@@ -128,7 +128,7 @@ function StackDetails() {
                     {technologies.map((tech, idx) => (
                       <div key={tech._id + idx} className="flex flex-col items-center gap-1">
                         <div className="flex items-center gap-1.5 text-4xl min-h-10">
-                          {getIconifyComponent(tech.name, "size-10") || <CircleQuestionMark />}
+                          {getIconifyComponent(tech.name, "size-10") || <CircleHelp />}
                         </div>
                         <span className="text-xs text-muted-foreground text-center mt-1">{tech.name}</span>
                       </div>
